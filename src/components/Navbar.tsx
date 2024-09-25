@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,16 +34,17 @@ export const Navbar = () => {
 
           {/* Menú móvil */}
           <div className="lg:hidden">
-            <button className="text-white focus:outline-none" onClick={toggleMenu}>
-              {/* Icono del menú con transformación */}
-              <div className={`transform transition-transform duration-300 ease-in-out ${menuOpen ? "rotate-45" : ""}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${menuOpen ? "hidden" : "block"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${menuOpen ? "block" : "hidden"} transition-all duration-300`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </div>
+            <button className="text-white focus:outline-none " onClick={toggleMenu}>
+              {/* Icono del menú con transformación suave */}
+              {menuOpen ? (
+                <AiOutlineClose
+                  className="h-6 w-6 transform transition-transform duration-500 ease-in-out scale-105 rotate-180 opacity-100"
+                />
+              ) : (
+                <AiOutlineMenu
+                  className="h-6 w-6 transform transition-transform duration-500 ease-in-out scale-105 rotate-0 opacity-100"
+                />
+              )}
             </button>
           </div>
         </div>
@@ -50,7 +52,7 @@ export const Navbar = () => {
 
       {/* Menú desplegable para móvil con animación suave */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out transform ${
+        className={`lg:hidden overflow-hidden transition-all duration-700 ease-in-out transform ${
           menuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
